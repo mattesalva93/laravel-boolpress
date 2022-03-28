@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('front');
-});
+// Route::get('/', function () {
+//     return view('front');
+// });
 
 Auth::routes();
 
@@ -30,3 +30,11 @@ Route::middleware('auth')
         Route::get('/', 'HomeController@index')->name('home');
         Route::resource('/posts', 'PostController');
     });
+
+// gestione visione frontoffice
+Route::get("{any?}", function() {
+    return view("front");
+})->where("any", ".*");
+    
+
+    

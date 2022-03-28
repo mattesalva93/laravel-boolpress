@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <!-- <main>
         <div class="container">
             <div class="post-container">
                 <div
@@ -32,7 +32,9 @@
                 </div>
             </div>
         </div>
-    </main>
+    </main> -->
+
+    <router-link ></router-link>
 </template>
 
 <script>
