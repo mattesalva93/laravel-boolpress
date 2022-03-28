@@ -5,6 +5,7 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import Home from "./pages/Home";
+import PostSingolo from "./pages/PostSingolo";
 
 const router = new VueRouter({
     mode: "history",
@@ -13,6 +14,11 @@ const router = new VueRouter({
             path: "/",
             name: "home",
             component: Home
+        },        
+        {
+            path: "/post/:slug",
+            name: "post-single",
+            component: PostSingolo
         },
     ]
 });

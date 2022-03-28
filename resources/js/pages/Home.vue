@@ -1,5 +1,5 @@
 <template>
-      <main>
+    <main>
         <div class="container">
             <div class="post-container">
                 <div
@@ -7,7 +7,7 @@
                     :key="elemento.id"
                     class="post-card"
                 >
-                    <div>TITOLAZZO: {{ elemento.title }}</div>
+                    <div>TITOLO: {{ elemento.title }}</div>
                     <div>
                         {{ elemento.content }}
                     </div>
@@ -18,16 +18,27 @@
                         <img src="../../../public/img/empty_image.jpg" alt="" />
                     </div>
                     <div v-if="elemento.category != null">
-                        CATEGORIA: {{ elemento.category.name}}
+                        CATEGORIA: {{ elemento.category.name }}
                     </div>
-                    <div v-else>
-                        CATEGORIA: -
+                    <div v-else>CATEGORIA: -</div>
+                    <div>
+                        TAG:
+                        <span
+                            v-for="(tag, index) in elemento.tags"
+                            :key="index"
+                        >
+                            <i>{{ tag.name }} </i>
+                        </span>
                     </div>
                     <div>
-                        TAG: 
-                        <span v-for="(tag, index) in elemento.tags" :key="index">
-                            <i>{{tag.name}} </i>
-                        </span>
+                        <router-link
+                            :to="{
+                                name: 'post-single',
+                                params: { slug: elemento.slug }
+                            }"
+                        >
+                            Vai al post
+                        </router-link>
                     </div>
                 </div>
             </div>
