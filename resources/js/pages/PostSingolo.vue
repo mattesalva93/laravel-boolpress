@@ -29,6 +29,10 @@
         </div>
         <div>
             <h4>Commenti</h4>
+            <div v-for="(elemento, index) in post.comments" :key="index" class="box_commento">
+                <p><b>Nome Utente:</b> {{elemento.name}}</p>
+                <p>{{elemento.testo}}</p>
+            </div>
             <form @submit.prevent="aggiungiCommento()">
                 <input
                     type="text"
@@ -89,4 +93,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+    .box_commento{
+        border: 1px solid black;
+        padding: 10px;
+        margin: 10px 0;
+    }
+</style>>
+
+
