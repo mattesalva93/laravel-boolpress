@@ -2115,11 +2115,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Post-Singolo",
   data: function data() {
     return {
-      post: {}
+      post: {},
+      inputUtente: {
+        name: "",
+        testo: "",
+        post_id: null
+      },
+      commentCheck: false
     };
   },
   created: function created() {
@@ -2131,7 +2148,17 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/posts/".concat(this.$route.params.slug)).then(function (response) {
         _this.post = response.data;
+        _this.inputUtente.post_id = _this.post.id;
         console.log(_this.post);
+      });
+    },
+    aggiungiCommento: function aggiungiCommento() {
+      var _this2 = this;
+
+      axios.post("/api/comments/", this.inputUtente).then(function (response) {
+        _this2.inputUtente.name = "";
+        _this2.inputUtente.testo = "";
+        _this2.commentCheck = true;
       });
     }
   }
@@ -3343,7 +3370,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("router-view")
+  return _c("router-view", { key: _vm.$route.path })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -3527,6 +3554,91 @@ var render = function () {
             },
           }),
         ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("h4", [_vm._v("Commenti")]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function ($event) {
+              $event.preventDefault()
+              return _vm.aggiungiCommento()
+            },
+          },
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.inputUtente.name,
+                expression: "inputUtente.name",
+              },
+            ],
+            attrs: {
+              type: "text",
+              id: "name",
+              placeholder: "Inserisci il nome",
+            },
+            domProps: { value: _vm.inputUtente.name },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.inputUtente, "name", $event.target.value)
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.inputUtente.testo,
+                expression: "inputUtente.testo",
+              },
+            ],
+            attrs: {
+              id: "testo",
+              cols: "30",
+              rows: "5",
+              placeholder: "Commenta qui",
+            },
+            domProps: { value: _vm.inputUtente.testo },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.inputUtente, "testo", $event.target.value)
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("button", { attrs: { type: "submit" } }, [_vm._v("Invia")]),
+        ]
+      ),
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.commentCheck,
+            expression: "commentCheck",
+          },
+        ],
+      },
+      [_vm._v("\n        In approvazione!\n    ")]
+    ),
   ])
 }
 var staticRenderFns = []

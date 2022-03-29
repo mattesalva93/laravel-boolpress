@@ -21,5 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('Api')->name('api.')->group(function(){
     Route::get("/posts", "PostController@index")->name('posts');
     Route::get("/posts/{slug}", "PostController@show")->name('posts.show');
+    Route::post("/comments", "CommentController@store")->name('comments.store');
 
 });
