@@ -30,14 +30,23 @@
         <div>
             <h4>Commenti</h4>
             <form @submit.prevent="aggiungiCommento()">
-                <input type="text" id="name" placeholder="Inserisci il nome" v-model="inputUtente.name">
-                <textarea id="testo" cols="30" rows="5" placeholder="Commenta qui" v-model="inputUtente.testo"></textarea>
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Inserisci il nome"
+                    v-model="inputUtente.name"
+                />
+                <textarea
+                    id="testo"
+                    cols="30"
+                    rows="5"
+                    placeholder="Commenta qui"
+                    v-model="inputUtente.testo"
+                ></textarea>
                 <button type="submit">Invia</button>
             </form>
         </div>
-        <div v-show="commentCheck">
-            In approvazione!
-        </div>
+        <div v-show="commentCheck">In approvazione!</div>
     </div>
 </template>
 
@@ -50,9 +59,9 @@ export default {
             inputUtente: {
                 name: "",
                 testo: "",
-                post_id: null
+                post_id: null,
             },
-            commentCheck: false
+            commentCheck: false,
         };
     },
     created() {
@@ -69,15 +78,13 @@ export default {
                 });
         },
         aggiungiCommento: function () {
-            axios
-                .post(`/api/comments/`, this.inputUtente)
-                .then((response) => {
-                    this.inputUtente.name = "";
-                    this.inputUtente.testo = "";
-                    this.commentCheck = true;
-                });
+            axios.post(`/api/comments/`, this.inputUtente).then((response) => {
+                this.inputUtente.name = "";
+                this.inputUtente.testo = "";
+                this.commentCheck = true;
+                console.log(response);
+            });
         },
-        
     },
 };
 </script>

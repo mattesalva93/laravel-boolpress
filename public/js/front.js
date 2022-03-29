@@ -2126,6 +2126,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Post-Singolo",
   data: function data() {
@@ -2159,6 +2168,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.inputUtente.name = "";
         _this2.inputUtente.testo = "";
         _this2.commentCheck = true;
+        console.log(response);
       });
     }
   }
@@ -3637,7 +3647,7 @@ var render = function () {
           },
         ],
       },
-      [_vm._v("\n        In approvazione!\n    ")]
+      [_vm._v("In approvazione!")]
     ),
   ])
 }

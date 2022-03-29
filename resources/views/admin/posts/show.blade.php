@@ -22,6 +22,38 @@
                     </div>
                 @endif
 
+                <div class="mt-2">
+                    <h5>Commenti in attesa</h5>
+                    <table class="table">
+                        <tbody>
+                            @foreach ($post->comments as $elemento)
+                                <tr>
+                                    <td>{{ $elemento->testo }}</td>
+                                    <td>
+                                        @if (!$elemento->approvato)
+                                            <form action="{{ route('admin.comments.update', $elemento->id) }}"
+                                                method="post">
+                                                @csrf
+                                                @method("PATCH")
+                                                <button type="submit" class="btn btn-success">Approva commento</button>
+                                            </form>
+                                        @else
+                                            <span>Approvato</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                            <form action="{{ route('admin.comments.destroy', $elemento->id) }}"
+                                                method="post">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button type="submit" class="btn btn-danger">Cancella commento</button>
+                                            </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 <a href="{{ route('admin.posts.index') }}">
                     <button type="button" class="btn btn-secondary mt-5">
                         Ritorna all'elenco

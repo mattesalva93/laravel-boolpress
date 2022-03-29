@@ -26,7 +26,7 @@
                     @foreach ($posts as $elemento)
                         <tr>
                             <th scope="row">{{ $elemento->id }}</th>
-                            <td>{{ $elemento->title }}</td>
+                            <td>{{ $elemento->title }} ({{count($elemento->comments)}})</td>
                             <td>{{ $elemento->content }}</td>
                             <td>{{ $elemento->category ? $elemento->category->name : 'none' }}</td>
                             <td>
